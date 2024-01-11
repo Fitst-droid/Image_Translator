@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ryml&h-q0sppgkm0z%tq)hxhsil!)=dhn%4=ogrfez!$1$^bei
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -175,3 +175,7 @@ LOGGING = {
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
 )
+
+IMAGE_ROOT = os.path.join(BASE_DIR, 'image')
+IMAGE_URL = '/images/'
+
