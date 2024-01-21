@@ -125,6 +125,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# CSSの配置場所を追加
+STATICFILES_DIRS = (
+  [
+  os.path.join(BASE_DIR, 'static'),
+  ]
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -171,11 +178,7 @@ LOGGING = {
     }
 }
 
-# CSSの配置場所を追加
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static'),
-)
+# media_rootファイルの保管場所
+MEDIA_ROOT = BASE_DIR / 'media'
 
-IMAGE_ROOT = os.path.join(BASE_DIR, 'image')
-IMAGE_URL = '/images/'
-
+MEDIA_URL = '/media/'
