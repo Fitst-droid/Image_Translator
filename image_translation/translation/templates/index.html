@@ -49,14 +49,16 @@
               <h2>選択した画像</h2>
               <img id="preview">
             </div>
+      
 
             <!-- 操作ボタン -->
-            <form method="post" enctype="multipart/form-data">
-
+            <form  method="post" enctype="multipart/form-data">
+              {% csrf_token %}
               <div id="button-content">
-                {% csrf_token %}
                 {{ form.file }}
-                <input type="file" accept='image/*' onchange="previewImage(this);" required>
+                
+                <!-- <input type="file" accept='image/*' onchange="previewImage(this);" required> -->
+
                 {% for field in form %}
                   {% if form.errors %}
                     {{ field.errors }}
@@ -64,7 +66,7 @@
                 {% endfor %}
 
                 {% if filename_save %}
-                  ファイル名{{ filename_save }}が選択されました。
+                  ファイル名{{ filename_save }}を翻訳いたしました。
                 {% endif %}  
 
 
