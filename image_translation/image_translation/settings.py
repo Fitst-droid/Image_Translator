@@ -123,12 +123,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# CSSの配置場所を追加
 STATIC_URL = '/static/'
 
-# CSSの配置場所を追加
 STATICFILES_DIRS = (
   [
-  os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
   ]
 )
 
@@ -179,6 +179,6 @@ LOGGING = {
 }
 
 # media_rootファイルの保管場所
-MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'

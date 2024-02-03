@@ -56,9 +56,8 @@
               {% csrf_token %}
               <div id="button-content">
                 {{ form.file }}
-                
-                <!-- <input type="file" accept='image/*' onchange="previewImage(this);" required> -->
 
+                
                 {% for field in form %}
                   {% if form.errors %}
                     {{ field.errors }}
