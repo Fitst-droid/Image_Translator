@@ -29,9 +29,9 @@ class IndexView(View):
     form = ControlForm()
     context = {
       'form': form
-  }
+    }
 
     return render(request, 'index.html', context)
 
-indexview = IndexView.as_view()
+index = IndexView.as_view()
 

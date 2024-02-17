@@ -42,36 +42,36 @@
 
         <!-- 解析画面 -->
         <section id="analysis">
+
           <!-- 翻訳する画像を表示 -->
           <div class="flexbox-area">
-            <!-- 画像選択 -->
             <div class="analysis-content">
               <h2>選択した画像</h2>
-              <img id="preview">
+              <img id="preview" src="{{ 'filename_save' }}">
             </div>
-      
 
             <!-- 操作ボタン -->
-            <form  method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
+
+              
               <div id="button-content">
-                {{ form.file }}
-
-                
+                <!-- 画像選択 -->
                 {% for field in form %}
-                  {% if form.errors %}
-                    {{ field.errors }}
-                  {% endif %}
+                {{ field }}
+                {% if form.errors %}
+                  {{ field.errors }}
+                {% endif %}
                 {% endfor %}
-
+            
                 {% if filename_save %}
-                  ファイル名{{ filename_save }}を翻訳いたしました。
+                  <font color=#E6553D>ファイル名<br>{{ filename_save }}<br>を翻訳いたしました。</font>
                 {% endif %}  
 
-
+                
                 <!-- 言語選択 -->
                 <div class="select-content">
-                  <select name="language" class="select-design " id="language_select">
+                  <select name="choice1" class="select-design " id="language_select">
                     <option value="">--言語を選択--</option>
                     <option value="english">英語</option>
                     <option value="german">ドイツ語</option>
@@ -82,7 +82,7 @@
                   </select>
 
                   <!-- 保存形式 -->
-                  <select name="format" class="select-design" id="format_select">
+                  <select name="choice2" class="select-design" id="format_select">
                     <option value="">--保存形式を選択--</option>
                     <option value="pdf">pdf</option>
                     <option value="txt">txt</option>
@@ -90,7 +90,6 @@
                     <option value="csv">csv</option>
                   </select>
                 </div>
-
                 <button class="button-design" type="submit">翻訳</button>
                 <button class="button-design">ダウンロード</button>
           
