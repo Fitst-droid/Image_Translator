@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="画像からテキストを検出して翻訳するAIアプリ">
     <title>Image Translator -画像翻訳</title>
+    <link rel="stylesheet" href="http://unpkg.com/ress/dist/ress.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
   </head>
 
   <body>
@@ -39,22 +40,23 @@
           </div>
         </section>
 
-
         <!-- 解析画面 -->
         <section id="analysis">
+          {% if filename_save %}
+          <p class="massege">ファイル名<br>{{ filename_save }}<br>を翻訳いたしました。</p>
+          {% endif %}
 
           <!-- 翻訳する画像を表示 -->
           <div class="flexbox-area">
             <div class="analysis-content">
               <h2>選択した画像</h2>
-              <img id="preview" src="{{ 'filename_save' }}">
+              <img id="preview" src="{{ filename_save }}">
             </div>
-
+            
             <!-- 操作ボタン -->
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
-
-              
+            
               <div id="button-content">
                 <!-- 画像選択 -->
                 {% for field in form %}
@@ -63,39 +65,11 @@
                   {{ field.errors }}
                 {% endif %}
                 {% endfor %}
-            
-                {% if filename_save %}
-                  <font color=#E6553D>ファイル名<br>{{ filename_save }}<br>を翻訳いたしました。</font>
-                {% endif %}  
 
-                
-                <!-- 言語選択 -->
-                <div class="select-content">
-                  <select name="choice1" class="select-design " id="language_select">
-                    <option value="">--言語を選択--</option>
-                    <option value="english">英語</option>
-                    <option value="german">ドイツ語</option>
-                    <option value="chinese">中国語</option>
-                    <option value="japanese">日本語</option>
-                    <option value="korean">韓国語</option>
-                    <option value="french">フランス語</option>
-                  </select>
-
-                  <!-- 保存形式 -->
-                  <select name="choice2" class="select-design" id="format_select">
-                    <option value="">--保存形式を選択--</option>
-                    <option value="pdf">pdf</option>
-                    <option value="txt">txt</option>
-                    <option value="xlsx">xlsx</option>
-                    <option value="csv">csv</option>
-                  </select>
-                </div>
                 <button class="button-design" type="submit">翻訳</button>
                 <button class="button-design">ダウンロード</button>
-          
               </div>
             </form>
-
 
             <!-- 翻訳結果 -->
             <div class="analysis-content">

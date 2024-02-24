@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import ControlForm
 from django.views.generic import View
+from django.contrib import messages
 
 class IndexView(View):
   def get(self, request, *args, **kwargs):
@@ -22,16 +23,25 @@ class IndexView(View):
       'form': form,
       'filename_save': filename_save,
     }
- 
-    return render(request, 'index.html', context)  
+    
+    return render(request, 'index.html', context) 
 
   def get(self, request):
     form = ControlForm()
     context = {
-      'form': form
+      'form': form,
     }
 
     return render(request, 'index.html', context)
+  
+  def get(self, request):
+    form = ControlForm()
+    context = {
+      'form': form,
+    }
+
+    return render(request, 'index.html', context)
+
 
 index = IndexView.as_view()
 

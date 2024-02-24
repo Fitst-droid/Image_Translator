@@ -3,9 +3,10 @@ from django import forms
 from django.core.files.storage import default_storage
 
 
+
 class ControlForm(forms.Form):
     file = forms.ImageField()
-
+    
     def save(self):
         """ファイルを保存するメソッド"""
         now_date = datetime.datetime.now().strftime('%Y%m%d_%H%M')
@@ -15,6 +16,7 @@ class ControlForm(forms.Form):
 
     choice1 = forms.fields.ChoiceField(
         choices = (
+            ('', '--言語を選択--'),
             ('english', '英語'),
             ('german', 'ドイツ語'),
             ('chinese', '中国語'),
@@ -24,15 +26,24 @@ class ControlForm(forms.Form):
         ),
         required=True,
         widget=forms.widgets.Select
+        (attrs={
+            "class": "select-content",
+            "class": "select-design",            
+        }),
     )
 
     choice2 = forms.fields.ChoiceField(
         choices = (
+            ('', '--保存形式を選択--'),
             ('pdf', 'pdf'),
             ('txt', 'txt'),
             ('xlsx', 'xlsx'),
-            ('csv', 'csv'),
+            ('csv', 'csv')
         ),
         required=True,
         widget=forms.widgets.Select
-    ),
+        (attrs={
+            "class": "select-content",
+            "class": "select-design",
+        }),
+    )
